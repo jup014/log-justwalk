@@ -1,0 +1,28 @@
+services:
+  mongo:
+    image: mongo
+    expose: 
+      - "27017"
+    volumes:
+      - mongodbfile:/data/db
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+  api:
+    image: jup014/team-yourmove-log-api:0.2
+    build:
+      context: ./api/
+      dockerfile: ./api.Dockerfile
+    working_dir: /api
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./api:/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+volumes:
+  mongodbfile:
