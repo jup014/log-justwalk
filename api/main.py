@@ -24,11 +24,10 @@ def log_post(msg: str):
         
     return {"result": True}
 
-@app.get("/log")
-def log_get():
-    mongo = MongoHandler()
+# @app.get("/log")
+# def log_get():
+#     mongo = MongoHandler()
     
-    mongo.
-    mongo.close()
+#     mongo.close()
         
-    return {"result": True}
+#     return {"result": True}
